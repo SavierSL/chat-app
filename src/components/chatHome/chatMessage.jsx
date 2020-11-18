@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
 import { firestore, auth } from "../../App";
+import "../styles/sass/globalStyles.scss";
+
 const ChatMessage = ({ message }) => {
   const { text, uid, photoURL } = message;
 

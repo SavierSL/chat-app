@@ -2,6 +2,7 @@ import React from "react";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
+import "../styles/sass/globalStyles.scss";
 
 const SignIn = () => {
   const auth = firebase.auth();
@@ -12,7 +13,9 @@ const SignIn = () => {
 
   return (
     <>
-      <button onClick={signInWthGoogle}>Sign in with Google</button>
+      <button className="signIn" onClick={signInWthGoogle}>
+        Sign in with Google
+      </button>
     </>
   );
 };

@@ -9,6 +9,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import ChatMessage from "./chatMessage";
 import { firestore, auth } from "../../App";
+import "../styles/sass/globalStyles.scss";
 
 const ChatRoom = () => {
   const dummy = useRef();
@@ -24,7 +25,9 @@ const ChatRoom = () => {
   function SignOut() {
     return (
       auth.currentUser && (
-        <button onClick={() => auth.signOut()}>Sign Out</button>
+        <button className="signOut" onClick={() => auth.signOut()}>
+          Sign Out
+        </button>
       )
     );
   }
@@ -42,22 +45,26 @@ const ChatRoom = () => {
   };
   return (
     <>
-      <div className="chatRoom">ChatRoom</div>
+      {" "}
       <SignOut />
-      <div className="messages" style={{ marginBottom: "2rem" }}>
-        {messages &&
-          messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
-        <span ref={dummy}></span>
+      <div className="chatRoom">
+        <div className="messages" style={{ marginBottom: "2rem" }}>
+          {messages &&
+            messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
+          <span ref={dummy}></span>
+        </div>
       </div>
-
-      <form onSubmit={SendMessage}>
-        <input
-          type="text"
-          value={formValue}
-          onChange={(e) => setFormValue(e.target.value)}
-        />
-        <button>send</button>
-      </form>
+      <div className="form">
+        <form onSubmit={SendMessage}>
+          <input
+            className="inputText"
+            type="text"
+            value={formValue}
+            onChange={(e) => setFormValue(e.target.value)}
+          />
+          <button className="send">send</button>
+        </form>
+      </div>
     </>
   );
 };
